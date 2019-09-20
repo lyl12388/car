@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vip.index.mapper.TypeMapper">
+  <resultMap id="BaseResultMap" type="com.vip.index.domain.vo.TypeVo">
+    <id column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    <collection property="cars" resultMap="com.vip.index.mapper.CarMapper.BaseResultMap">
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List">
+    t.type_id, type_name,car_id, car_name, car_descr, pre_price, rel_price, car_license, car_mile, car_capacity,
+    c.brand_id, c.type_id, price_id, carage_id, mile_id, standard_id,sales,remarks
+  </sql>
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from type t left join car c on t.type_id = c.type_id order by t.type_id asc
+  </select>
+
+</mapper>

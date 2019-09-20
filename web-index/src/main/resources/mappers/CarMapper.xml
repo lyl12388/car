@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vip.index.mapper.CarMapper">
+  <resultMap id="BaseResultMap" type="com.vip.index.domain.entity.Car">
+    <id column="car_id" jdbcType="INTEGER" property="carId" />
+    <result column="car_name" jdbcType="VARCHAR" property="carName" />
+    <result column="car_descr" jdbcType="VARCHAR" property="carDescr" />
+    <result column="pre_price" jdbcType="DOUBLE" property="prePrice" />
+    <result column="rel_price" jdbcType="DOUBLE" property="relPrice" />
+    <result column="car_license" jdbcType="TIMESTAMP" property="carLicense" />
+    <result column="car_mile" jdbcType="VARCHAR" property="carMile" />
+    <result column="car_capacity" jdbcType="VARCHAR" property="carCapacity" />
+    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+    <result column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="price_id" jdbcType="INTEGER" property="priceId" />
+    <result column="carage_id" jdbcType="INTEGER" property="carageId" />
+    <result column="mile_id" jdbcType="INTEGER" property="mileId" />
+    <result column="standard_id" jdbcType="INTEGER" property="standardId" />
+    <result column="sales" jdbcType="INTEGER" property="sales" />
+    <result column="remarks" jdbcType="INTEGER" property="remarks" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    car_id, car_name, car_descr, pre_price, rel_price, car_license, car_mile, car_capacity, 
+    c.brand_id, c.type_id, price_id, carage_id, mile_id, standard_id,sales,remarks
+  </sql>
+  <select id="findByName" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from car c
+    where c.car_name like concat(concat('%' , #{name}),'%')
+    or c.type_id = (select t.type_id from type t where t.type_name like concat(concat('%' , #{name}),'%'))
+  </select>
+  <select id="findOrderBySales" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from car c
+    order by c.sales desc limit 0,6
+  </select>
+
+  <select id="findOrderByCarLicense" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from car c
+    order by c.car_license desc limit 0,6
+  </select>
+
+  <select id="findOrderByRemarks" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from car c
+    order by c.remarks desc limit 0,4
+  </select>
+</mapper>

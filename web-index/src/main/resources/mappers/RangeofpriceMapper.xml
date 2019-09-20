@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vip.index.mapper.RangeofpriceMapper">
+  <resultMap id="BaseResultMap" type="com.vip.index.domain.entity.Rangeofprice">
+    <id column="price_id" jdbcType="INTEGER" property="priceId" />
+    <result column="price_between" jdbcType="VARCHAR" property="priceBetween" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    price_id, price_between
+  </sql>
+  <select id="findAll"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from rangeofprice r order by r.price_id asc
+
+  </select>
+</mapper>
