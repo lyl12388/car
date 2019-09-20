@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
+@RequestMapping("/index")
 public class IndexController {
 
     @Resource

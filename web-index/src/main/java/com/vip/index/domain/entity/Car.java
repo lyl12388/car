@@ -1,6 +1,7 @@
 package com.vip.index.domain.entity;
 
 import java.util.Date;
+
 import lombok.Data;
 
 @Data

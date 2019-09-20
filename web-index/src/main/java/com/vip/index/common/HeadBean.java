@@ -2,7 +2,6 @@ package com.vip.index.common;
 
 import com.vip.index.domain.entity.Brand;
 import com.vip.index.domain.entity.Rangeofprice;
-import com.vip.index.domain.entity.Type;
 import com.vip.index.domain.vo.TypeVo;
 import lombok.Data;
 
